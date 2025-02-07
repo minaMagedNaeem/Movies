@@ -22,9 +22,6 @@ target 'Movies' do
   pod 'NVActivityIndicatorView'
   pod 'NVActivityIndicatorView/Extended'
 
-  # ✅ Tagging UI
-  pod 'TagListView'
-
   # ✅ Network Debugging Tool
   pod 'netfox'
 

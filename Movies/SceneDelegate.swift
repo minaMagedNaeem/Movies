@@ -56,6 +56,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         coordinator = AppCoordinator(navigationController: navigationController)
         coordinator?.start()
+        
+        return navigationController
     }
     
     func setMainAppWindow(scene: UIScene, mainAppFlowViewController: UIViewController) {

@@ -13,7 +13,6 @@ PODS:
   - NVActivityIndicatorView/Extended (5.2.0):
     - NVActivityIndicatorView/Base
   - ReachabilitySwift (5.2.4)
-  - TagListView (1.4.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -24,7 +23,6 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - NVActivityIndicatorView/Extended
   - ReachabilitySwift
-  - TagListView
 
 SPEC REPOS:
   trunk:
@@ -35,7 +33,6 @@ SPEC REPOS:
     - netfox
     - NVActivityIndicatorView
     - ReachabilitySwift
-    - TagListView
 
 SPEC CHECKSUMS:
   Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
@@ -45,8 +42,7 @@ SPEC CHECKSUMS:
   netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
   NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
   ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
-  TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
 
-PODFILE CHECKSUM: 8cd5a00cc101c56539d9f9cd97e085452645f8fb
+PODFILE CHECKSUM: 1ac39d7607475f249cb8628ed8888766b6f84a28
 
 COCOAPODS: 1.16.2
