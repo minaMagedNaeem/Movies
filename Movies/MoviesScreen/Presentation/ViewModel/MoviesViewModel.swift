@@ -10,6 +10,7 @@ import SwiftUI
 @MainActor
 class MoviesViewModel: ObservableObject {
     private let getMoviesUseCase: GetMoviesUseCase
+    private let searchMoviesUseCase: SearchMoviesUsecase
 
     @Published var movies: [Movie] = []
     @Published var isLoading = false
@@ -17,9 +18,11 @@ class MoviesViewModel: ObservableObject {
     
     private var currentPage = 1
     private var hasMoreMovies = true
+    private var currentKeyword: String?
     
-    init(getMoviesUseCase: GetMoviesUseCase) {
-            self.getMoviesUseCase = getMoviesUseCase
+    init(getMoviesUseCase: GetMoviesUseCase, searchMoviesUseCase: SearchMoviesUsecase) {
+        self.getMoviesUseCase = getMoviesUseCase
+        self.searchMoviesUseCase = searchMoviesUseCase
     }
 
     var groupedMovies: [Int: [Movie]] {
@@ -33,7 +36,14 @@ class MoviesViewModel: ObservableObject {
         errorMessage = nil
 
         do {
-            let newMovies = try await getMoviesUseCase.execute(page: currentPage)
+            var newMovies: [Movie]
+            
+            if currentKeyword?.isEmpty == true || currentKeyword == nil {
+                newMovies = try await getMoviesUseCase.execute(page: currentPage)
+            } else {
+                newMovies = try await searchMoviesUseCase.execute(page: currentPage, keyword: currentKeyword ?? "")
+            }
+            
             if newMovies.isEmpty {
                 hasMoreMovies = false
             } else {
@@ -45,6 +55,16 @@ class MoviesViewModel: ObservableObject {
         }
 
         isLoading = false
+    }
+    
+    func searchMovies(keyword: String) async {
+        currentPage = 1
+        hasMoreMovies = true
+        movies.removeAll()
+        
+        currentKeyword = keyword
+        
+        await loadMovies()
     }
     
     private func getYear(from date: Date?) -> Int {

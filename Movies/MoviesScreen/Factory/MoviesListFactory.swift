@@ -8,9 +8,10 @@
 class MoviesListFactory {
     @MainActor static func get() -> MoviesListView {
         let moviesDataSource = MoviesRemoteDataSource()
-        let getMoviesRepo = MovieRepositoryImpl(remoteDataSource: moviesDataSource)
-        let getMoviesUseCase = GetMoviesUseCaseImpl(repository: getMoviesRepo)
-        let viewModel = MoviesViewModel(getMoviesUseCase: getMoviesUseCase)
+        let moviesRepo = MovieRepositoryImpl(remoteDataSource: moviesDataSource)
+        let getMoviesUseCase = GetMoviesUseCaseImpl(repository: moviesRepo)
+        let searchMoviesUseCase = SearchMoviesUseCaseImpl(repository: moviesRepo)
+        let viewModel = MoviesViewModel(getMoviesUseCase: getMoviesUseCase, searchMoviesUseCase: searchMoviesUseCase)
         return MoviesListView(viewModel: viewModel)
     }
 }

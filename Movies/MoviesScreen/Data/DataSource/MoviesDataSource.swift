@@ -8,4 +8,5 @@ import Combine
 
 protocol MoviesDataSource {
     func fetchMovies(page: Int) async throws -> [MovieDTO]
+    func searchMovies(page: Int, keyword: String) async throws -> [MovieDTO]
 }

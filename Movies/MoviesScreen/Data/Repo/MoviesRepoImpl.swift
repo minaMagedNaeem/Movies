@@ -16,4 +16,9 @@ class MovieRepositoryImpl: MoviesRepository {
         let movieDTOs = try await remoteDataSource.fetchMovies(page: page)
         return MoviesMapper.map(moviesDTO: movieDTOs)
     }
+    
+    func searchMovies(page: Int, keyword: String) async throws -> [Movie] {
+        let movieDTOs = try await remoteDataSource.searchMovies(page: page, keyword: keyword)
+        return MoviesMapper.map(moviesDTO: movieDTOs)
+    }
 }

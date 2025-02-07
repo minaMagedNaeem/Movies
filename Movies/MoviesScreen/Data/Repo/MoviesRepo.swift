@@ -8,4 +8,5 @@ import Combine
 
 protocol MoviesRepository {
     func getMovies(page: Int) async throws -> [Movie]
+    func searchMovies(page: Int, keyword: String) async throws -> [Movie]
 }

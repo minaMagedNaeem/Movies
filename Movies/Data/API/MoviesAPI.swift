@@ -13,6 +13,7 @@ import Reachability
 enum MoviesAPI : TargetType {
         
     case getMovies(page: Int)
+    case searchMovies(page: Int, keyword: String)
     
     public var baseURL: URL {
         return URL(string: BASEURL)!
@@ -22,12 +23,16 @@ enum MoviesAPI : TargetType {
         switch self {
         case .getMovies:
             return "/discover/movie"
+        case .searchMovies:
+            return "/search/movie"
         }
     }
     
     public var method: Moya.Method {
         switch self {
         case .getMovies:
+            return .get
+        case .searchMovies:
             return .get
         }
     }
@@ -39,12 +44,28 @@ enum MoviesAPI : TargetType {
     public var task: Task {
         switch self {
         case .getMovies(let page):
-            return .requestParameters(parameters: ["include_adult": false,
-                                                   "include_video": false,
-                                                   "language": "en-US",
-                                                   "sort_by": "popularity.desc",
-                                                   "page": page],
+            
+            var parameters: [String: Any] = [
+                "include_adult": false,
+                "include_video": false,
+                "language": "en-US",
+                "sort_by": "popularity.desc",
+                "page": page
+            ]
+            
+            return .requestParameters(parameters: parameters,
                                       encoding: URLEncoding.default)
+        case .searchMovies(let page, let keyword):
+            var parameters: [String: Any] = [
+                "include_adult": false,
+                "language": "en-US",
+                "page": page,
+                "query": keyword
+            ]
+            
+            return .requestParameters(parameters: parameters,
+                                      encoding: URLEncoding.default)
+            
         default:
             return .requestPlain
         }
@@ -63,7 +84,7 @@ enum MoviesAPI : TargetType {
             fatalError("Cannot retrieve access token from local storage")
         }
         
-        var headers : [String:String] = ["Authorization":"Bearer \(token)",
+        let headers : [String:String] = ["Authorization":"Bearer \(token)",
                                          "Content-Type": "application/json"]
         
         switch self {
@@ -100,5 +121,4 @@ final class ErrorHandlerPlugin : PluginType {
     }
 }
 
-let moviesAPIProvider = MoyaProvider<MoviesAPI>.init(plugins:
-                                                        [NetworkLoggerPlugin()])
+let moviesAPIProvider = MoyaProvider<MoviesAPI>.init(plugins: [NetworkLoggerPlugin()])
