@@ -7,5 +7,5 @@
 
 enum AppRoute {
     case moviesList
-    case movieDetails(movieId: String)
+    case movieDetails(movie: Movie)
 }

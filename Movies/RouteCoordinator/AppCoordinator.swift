@@ -6,28 +6,27 @@
 //
 import UIKit
 
-class AppCoordinator: Coordinator {
+class AppCoordinator: @preconcurrency Coordinator {
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
-    func start() {
+    @MainActor func start() {
         navigate(to: .moviesList)
     }
     
-    func navigate(to route: AppRoute) {
+    @MainActor func navigate(to route: AppRoute) {
         switch route {
         case .moviesList:
-            let moviesListVC = MoviesListViewController(nibName: "MoviesListViewController", bundle: nil)
+            let moviesListVC = MoviesListFactory.get(coordinator: self)
             navigationController.setViewControllers([moviesListVC], animated: false)
-        case .movieDetails(movieId: let movieId):
-            break
-//            let movieDetailsVC = MovieDetailsViewController(movieId: movieId)
-//            navigationController.pushViewController(movieDetailsVC, animated: true)
+        case .movieDetails(movie: let movie):
+            
+            let movieDetailsTabBarVC = MovieDetailsScreenFactory.get(movie: movie, coordinator: self)
+            
+            navigationController.pushViewController(movieDetailsTabBarVC, animated: true)
         }
     }
-    
-    
 }

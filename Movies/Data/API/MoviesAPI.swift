@@ -14,6 +14,7 @@ enum MoviesAPI : TargetType {
         
     case getMovies(page: Int)
     case searchMovies(page: Int, keyword: String)
+    case getMovieDetails(movieId: Int)
     
     public var baseURL: URL {
         return URL(string: BASEURL)!
@@ -25,6 +26,8 @@ enum MoviesAPI : TargetType {
             return "/discover/movie"
         case .searchMovies:
             return "/search/movie"
+        case .getMovieDetails(let movieId):
+            return "/movie/\(String(movieId))"
         }
     }
     
@@ -33,6 +36,8 @@ enum MoviesAPI : TargetType {
         case .getMovies:
             return .get
         case .searchMovies:
+            return .get
+        case .getMovieDetails:
             return .get
         }
     }
@@ -45,7 +50,7 @@ enum MoviesAPI : TargetType {
         switch self {
         case .getMovies(let page):
             
-            var parameters: [String: Any] = [
+            let parameters: [String: Any] = [
                 "include_adult": false,
                 "include_video": false,
                 "language": "en-US",
@@ -56,7 +61,7 @@ enum MoviesAPI : TargetType {
             return .requestParameters(parameters: parameters,
                                       encoding: URLEncoding.default)
         case .searchMovies(let page, let keyword):
-            var parameters: [String: Any] = [
+            let parameters: [String: Any] = [
                 "include_adult": false,
                 "language": "en-US",
                 "page": page,
@@ -66,7 +71,7 @@ enum MoviesAPI : TargetType {
             return .requestParameters(parameters: parameters,
                                       encoding: URLEncoding.default)
             
-        default:
+        case .getMovieDetails:
             return .requestPlain
         }
     }

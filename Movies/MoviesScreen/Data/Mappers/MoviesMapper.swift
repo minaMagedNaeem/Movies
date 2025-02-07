@@ -14,7 +14,7 @@ class MoviesMapper {
                   originalTitle: movie.originalTitle,
                   overview: movie.overview,
                   posterPath: movie.posterPath,
-                  releaseDate: MoviesMapper.getDate(from: movie.releaseDate),
+                  releaseDate: Date.init(from: movie.releaseDate),
                   title: movie.title,
                   addedToWatchList: false)
         }

@@ -48,6 +48,6 @@ struct MovieRow: View {
     }
 }
 
-#Preview {
-    MovieRow(movie: Movie(id: 123, originalLanguage: "English", originalTitle: "Test Movie", overview: "text test tst test test test test test test test", posterPath: "/1se0w1IwJj7APH94qwbnmgnHjI.jpg", releaseDate: MoviesMapper.getDate(from: "2000-07-25"), title: "Some Movie", addedToWatchList: true))
-}
+//#Preview {
+//    MovieRow(movie: Movie(id: 123, originalLanguage: "English", originalTitle: "Test Movie", overview: "text test tst test test test test test test test", posterPath: "/1se0w1IwJj7APH94qwbnmgnHjI.jpg", releaseDate: MoviesMapper.getDate(from: "2000-07-25"), title: "Some Movie", addedToWatchList: true))
+//}

@@ -40,6 +40,9 @@ struct MoviesListView: View {
                                             .onAppear {
                                                 callNextPageIfApplicable(movie: movie)
                                         }
+                                            .onTapGesture {
+                                                viewModel.goToDetails(of: movie)
+                                            }
                                     }
                                 }
                             }

@@ -11,10 +11,20 @@ import SwiftUI
 class MoviesListViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
+    
+    private let moviesListView: MoviesListView
+    
+    init(moviesListView: MoviesListView) {
+            self.moviesListView = moviesListView
+            super.init(nibName: "MoviesListViewController", bundle: nil)
+        }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let moviesListView = MoviesListFactory.get()
                 
         let hostingController = UIHostingController(rootView: moviesListView)
                         
