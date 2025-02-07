@@ -15,7 +15,7 @@ enum MoviesAPI : TargetType {
     case getMovies(page: Int)
     
     public var baseURL: URL {
-        return URL(string: "https://api.themoviedb.org/3")!
+        return URL(string: BASEURL)!
     }
     
     public var path: String {
@@ -42,7 +42,8 @@ enum MoviesAPI : TargetType {
             return .requestParameters(parameters: ["include_adult": false,
                                                    "include_video": false,
                                                    "language": "en-US",
-                                                   "sort_by": "popularity.desc"],
+                                                   "sort_by": "popularity.desc",
+                                                   "page": page],
                                       encoding: URLEncoding.default)
         default:
             return .requestPlain
@@ -58,7 +59,12 @@ enum MoviesAPI : TargetType {
     
     public var headers: [String: String]? {
         
-        var headers : [String:String] = ["Authorization":"Bearer \(token)"]
+        guard let token = AccessToken.getAPIKey() else {
+            fatalError("Cannot retrieve access token from local storage")
+        }
+        
+        var headers : [String:String] = ["Authorization":"Bearer \(token)",
+                                         "Content-Type": "application/json"]
         
         switch self {
         default:

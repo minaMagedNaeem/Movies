@@ -20,9 +20,8 @@ class AppCoordinator: Coordinator {
     func navigate(to route: AppRoute) {
         switch route {
         case .moviesList:
-            break
-//            let moviesListVC = MoviesListViewController()
-//            navigationController.setViewControllers([moviesListVC], animated: false)
+            let moviesListVC = MoviesListViewController(nibName: "MoviesListViewController", bundle: nil)
+            navigationController.setViewControllers([moviesListVC], animated: false)
         case .movieDetails(movieId: let movieId):
             break
 //            let movieDetailsVC = MovieDetailsViewController(movieId: movieId)
