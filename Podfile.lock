@@ -1,0 +1,52 @@
+PODS:
+  - Alamofire (5.10.2)
+  - IQKeyboardManager (6.5.19)
+  - Kingfisher (8.2.0)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - netfox (1.21.0)
+  - NVActivityIndicatorView (5.2.0):
+    - NVActivityIndicatorView/Base (= 5.2.0)
+  - NVActivityIndicatorView/Base (5.2.0)
+  - NVActivityIndicatorView/Extended (5.2.0):
+    - NVActivityIndicatorView/Base
+  - ReachabilitySwift (5.2.4)
+  - TagListView (1.4.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - IQKeyboardManager
+  - Kingfisher
+  - Moya
+  - netfox
+  - NVActivityIndicatorView
+  - NVActivityIndicatorView/Extended
+  - ReachabilitySwift
+  - TagListView
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - IQKeyboardManager
+    - Kingfisher
+    - Moya
+    - netfox
+    - NVActivityIndicatorView
+    - ReachabilitySwift
+    - TagListView
+
+SPEC CHECKSUMS:
+  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
+  IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
+  Kingfisher: 323e5c4ec7983aaace12af655a7b51a7f88a599d
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
+  NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
+  ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
+  TagListView: a1c236d17960a0cf64156725a76ce6d73ebce2be
+
+PODFILE CHECKSUM: 8cd5a00cc101c56539d9f9cd97e085452645f8fb
+
+COCOAPODS: 1.16.2
