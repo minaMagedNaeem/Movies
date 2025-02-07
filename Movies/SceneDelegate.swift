@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        let mainAppFlowViewController = getRefactoredAppFlow()
+        let mainAppFlowViewController = getMainAppFlow()
         
         setMainAppWindow(scene: scene,
                          mainAppFlowViewController: mainAppFlowViewController)
@@ -52,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-    func getRefactoredAppFlow() -> UINavigationController {
+    func getMainAppFlow() -> UIViewController {
         let navigationController = UINavigationController()
         coordinator = AppCoordinator(navigationController: navigationController)
         coordinator?.start()
