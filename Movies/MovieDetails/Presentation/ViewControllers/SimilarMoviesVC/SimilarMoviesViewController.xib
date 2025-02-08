@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimilarMoviesViewController" customModule="Movies" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="2Ge-Ve-vL2" id="c5K-GY-kwf"/>
+                <outlet property="screenTitle" destination="iqW-lV-PGE" id="jS3-d8-7GN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,25 +22,33 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2Ge-Ve-vL2">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="112" width="393" height="706"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="195-Fh-wgX">
+                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="195-Fh-wgX">
                         <size key="itemSize" width="150" height="250"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Similar Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqW-lV-PGE">
+                    <rect key="frame" x="141.66666666666666" y="75" width="110" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="2Ge-Ve-vL2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2DM-ec-Jvl"/>
-                <constraint firstItem="2Ge-Ve-vL2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="IaT-O0-8uX"/>
+                <constraint firstItem="2Ge-Ve-vL2" firstAttribute="top" secondItem="iqW-lV-PGE" secondAttribute="bottom" constant="16" id="CSI-mt-fjI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2Ge-Ve-vL2" secondAttribute="trailing" id="Vtp-QR-oyE"/>
+                <constraint firstItem="iqW-lV-PGE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cOH-Rq-a1e"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="2Ge-Ve-vL2" secondAttribute="bottom" id="qNU-p6-5SG"/>
+                <constraint firstItem="iqW-lV-PGE" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="qfY-7x-xJc"/>
             </constraints>
-            <point key="canvasLocation" x="140" y="20"/>
+            <point key="canvasLocation" x="139.69465648854961" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>

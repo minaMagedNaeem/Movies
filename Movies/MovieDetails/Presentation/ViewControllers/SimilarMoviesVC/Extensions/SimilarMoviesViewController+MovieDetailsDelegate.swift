@@ -11,12 +11,12 @@ extension SimilarMoviesViewController: GetSimilarMoviesDelegate {
     }
     
     func didStartLoading() {
-        self.collectionView.startProgressAnim()
+        //self.collectionView.startProgressAnim()
     }
     
     func didFinishLoading() {
-        self.collectionView.stopProgressAnim()
-        self.collectionView.layoutIfNeeded()
+        //self.collectionView.stopProgressAnim()
+        //self.collectionView.layoutIfNeeded()
     }
     
     func didFailWithError(_ error: String) {

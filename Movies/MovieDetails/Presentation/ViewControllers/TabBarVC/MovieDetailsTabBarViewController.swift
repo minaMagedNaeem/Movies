@@ -24,16 +24,10 @@ class MovieDetailsTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAppearance()
+        tabBar.setupAppearance()
         setupTabs()
     }
     
-    private func setupAppearance() {
-        tabBar.tintColor = AppColors.primary
-        tabBar.barTintColor = .white
-        tabBar.unselectedItemTintColor = AppColors.cardBackground
-        tabBar.isTranslucent = false
-    }
 
     private func setupTabs() {
         tabBarController?.tabBar.tintColor = AppColors.primary

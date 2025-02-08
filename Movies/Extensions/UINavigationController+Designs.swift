@@ -12,6 +12,10 @@ extension UINavigationController {
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = AppColors.background
         appearance.titleTextAttributes = [.foregroundColor: AppColors.text]
+        
+        appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: AppColors.accent]
+        
+        UINavigationBar.appearance().tintColor = AppColors.accent
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance

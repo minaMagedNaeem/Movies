@@ -13,7 +13,6 @@ struct AppColors {
     static let text = AppColors.hex("#FFFFFF") // White
     static let accent = AppColors.hex("#FFD700") // Gold
 
-    /// Converts a hex string to UIColor
     private static func hex(_ hex: String, alpha: CGFloat = 1.0) -> UIColor {
         var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 

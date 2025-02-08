@@ -16,7 +16,16 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        setupUI()
+    }
+    
+    func setupUI() {
+        movieTitle.textColor = AppColors.text
+        contentView.backgroundColor = AppColors.cardBackground
+        
+        movieImage.layer.cornerRadius = 8
+        movieImage.clipsToBounds = true
     }
     
     func bind(with movie: Movie) {
