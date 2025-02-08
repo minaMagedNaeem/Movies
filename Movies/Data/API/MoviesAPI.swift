@@ -15,6 +15,7 @@ enum MoviesAPI : TargetType {
     case getMovies(page: Int)
     case searchMovies(page: Int, keyword: String)
     case getMovieDetails(movieId: Int)
+    case getSimilarMovies(movieId: Int)
     
     public var baseURL: URL {
         return URL(string: BASEURL)!
@@ -28,6 +29,8 @@ enum MoviesAPI : TargetType {
             return "/search/movie"
         case .getMovieDetails(let movieId):
             return "/movie/\(String(movieId))"
+        case .getSimilarMovies(let movieId):
+            return "/movie/\(movieId)/similar"
         }
     }
     
@@ -38,6 +41,8 @@ enum MoviesAPI : TargetType {
         case .searchMovies:
             return .get
         case .getMovieDetails:
+            return .get
+        case .getSimilarMovies:
             return .get
         }
     }
@@ -72,6 +77,8 @@ enum MoviesAPI : TargetType {
                                       encoding: URLEncoding.default)
             
         case .getMovieDetails:
+            return .requestPlain
+        case .getSimilarMovies:
             return .requestPlain
         }
     }

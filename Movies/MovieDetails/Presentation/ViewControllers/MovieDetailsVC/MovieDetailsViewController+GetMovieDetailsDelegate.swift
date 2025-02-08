@@ -24,6 +24,4 @@ extension MovieDetailsViewController: GetMovieDetailsDelegate {
         didFinishLoading()
         self.showErrorPopup(message: error)
     }
-    
-    
 }

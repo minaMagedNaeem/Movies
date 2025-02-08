@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-class Movie: ObservableObject, Identifiable {
+class Movie: ObservableObject, Identifiable, Sendable {
     let id: Int
     let originalLanguage, originalTitle, overview: String?
     let posterPath, title: String?

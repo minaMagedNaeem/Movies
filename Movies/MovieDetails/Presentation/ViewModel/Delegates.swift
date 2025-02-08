@@ -17,7 +17,7 @@ protocol GetMovieDetailsDelegate: MovieDetailsViewModelDelegate {
 }
 
 protocol GetSimilarMoviesDelegate: MovieDetailsViewModelDelegate {
-    func didFetchSimilarMovies(_ movies: [Movie])
+    func didFetchSimilarMovies()
 }
 
 protocol GetTopCastDelegate: MovieDetailsViewModelDelegate {

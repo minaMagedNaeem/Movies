@@ -7,4 +7,5 @@
 
 protocol MovieDetailsDataSource {
     func getMovieDetails(movieId: Int) async throws -> MovieDetailsDTO
+    func getSimilarMovies(to movieId: Int) async throws -> [MovieDTO]
 }

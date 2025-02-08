@@ -10,8 +10,13 @@ class MovieDetailsScreenFactory {
         
         let datasource = MovieDetailsDatasourceImpl()
         let repo = MovieDetailsRepoImpl(remoteDataSource: datasource)
-        let usecase = GetMovieDetailsUsecaseImpl(movieDetailsRepo: repo)
-        let viewModel = MovieDetailsViewModel(movie: movie, movieUseCase: usecase, coordinator: coordinator)
+        let getMovieDetailsUsecase = GetMovieDetailsUsecaseImpl(movieDetailsRepo: repo)
+        let getSimilarMoviesUsecase = GetSimilarMoviesUsecaseImpl(movieDetailsRepo: repo)
+        let viewModel = MovieDetailsViewModel(movie: movie,
+                                              movieUseCase: getMovieDetailsUsecase,
+                                              getSimilarMoviesUsecase: getSimilarMoviesUsecase,
+                                              coordinator: coordinator)
+        
         return MovieDetailsTabBarViewController(movieDetailsViewModel: viewModel)
     }
 }
