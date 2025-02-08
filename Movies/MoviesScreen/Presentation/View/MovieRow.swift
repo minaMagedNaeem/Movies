@@ -4,7 +4,6 @@
 //
 //  Created by Mina Maged on 07/02/2025.
 //
-
 import SwiftUI
 import Kingfisher
 
@@ -25,21 +24,19 @@ struct MovieRow: View {
 
             VStack(alignment: .leading, spacing: 6) {
                 Text(movie.title ?? "Movie name not available")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
+                    .titleFont() // Applies custom title font
 
                 Text(movie.overview ?? "Movie overview not available")
-                    .font(.subheadline)
+                    .accentFont() // Uses accent font for the overview
                     .foregroundColor(.secondary)
                     .lineLimit(nil)
-                
+
                 HStack {
                     Image(systemName: movie.addedToWatchlist ? "bookmark.fill" : "bookmark")
-                                                .foregroundColor(movie.addedToWatchlist ? .yellow : .gray)
+                        .foregroundColor(movie.addedToWatchlist ? .yellow : .gray)
                     Text(movie.addedToWatchlist ? "On Watchlist" : "Not in Watchlist")
-                            .font(.footnote)
-                            .foregroundColor(.gray)
+                        .font(.custom(AppFont.bodyFont, size: 14)) // Uses body font
+                        .foregroundColor(.gray)
                 }
             }
             Spacer()
