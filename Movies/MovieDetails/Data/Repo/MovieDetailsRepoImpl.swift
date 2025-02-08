@@ -21,4 +21,9 @@ class MovieDetailsRepoImpl: MovieDetailsRepo {
         let movieDTOs = try await remoteDataSource.getSimilarMovies(to: movieId)
         return MoviesMapper.map(moviesDTO: movieDTOs)
     }
+    
+    func getCast(of movieId: Int) async throws -> CastInfo {
+        let castResponseDTO = try await remoteDataSource.getCast(of: movieId)
+        return CastResponseMapper.map(from: castResponseDTO)
+    }
 }

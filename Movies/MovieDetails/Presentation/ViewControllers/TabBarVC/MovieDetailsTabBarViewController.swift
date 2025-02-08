@@ -37,13 +37,12 @@ class MovieDetailsTabBarViewController: UITabBarController {
         let similarMoviesVC = SimilarMoviesViewController(viewModel: movieDetailsViewModel)
         similarMoviesVC.tabBarItem = UITabBarItem(title: "Similar", image: UIImage(systemName: "film"), tag: 1)
         movieDetailsViewModel.getSimilarMoviesDelegate = similarMoviesVC
-//
-//            // Movie Cast Tab
-//            let castVC = MovieCastViewController(viewModel: castViewModel)
-//            castVC.tabBarItem = UITabBarItem(title: "Cast", image: UIImage(systemName: "person.3"), tag: 2)
 
-            // Add view controllers to tab bar
-        viewControllers = [movieDetailsVC, similarMoviesVC]//, castVC]
-        }
+        let castVC = TopCastViewController(viewModel: movieDetailsViewModel)
+        castVC.tabBarItem = UITabBarItem(title: "Cast", image: UIImage(systemName: "person.3"), tag: 2)
+        movieDetailsViewModel.GetTopCastDelegate = castVC
+
+        viewControllers = [movieDetailsVC, similarMoviesVC, castVC]
+    }
 
 }

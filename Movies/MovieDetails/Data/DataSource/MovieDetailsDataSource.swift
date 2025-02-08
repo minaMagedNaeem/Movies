@@ -8,4 +8,5 @@
 protocol MovieDetailsDataSource {
     func getMovieDetails(movieId: Int) async throws -> MovieDetailsDTO
     func getSimilarMovies(to movieId: Int) async throws -> [MovieDTO]
+    func getCast(of movieId: Int) async throws -> CastResponseDTO
 }

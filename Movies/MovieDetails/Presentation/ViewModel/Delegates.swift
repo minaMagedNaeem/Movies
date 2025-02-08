@@ -21,5 +21,5 @@ protocol GetSimilarMoviesDelegate: MovieDetailsViewModelDelegate {
 }
 
 protocol GetTopCastDelegate: MovieDetailsViewModelDelegate {
-    //func didFetchTopCast(directors: [CastMember], actors: [CastMember])
+    func didFetchTopCast()
 }

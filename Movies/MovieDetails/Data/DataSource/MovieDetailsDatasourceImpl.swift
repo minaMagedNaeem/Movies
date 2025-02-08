@@ -42,4 +42,22 @@ class MovieDetailsDatasourceImpl: MovieDetailsDataSource {
             }
         }
     }
+    
+    func getCast(of movieId: Int) async throws -> CastResponseDTO {
+        return try await withCheckedThrowingContinuation { continuation in
+            moviesAPIProvider.request(.getCast(movieId: movieId)) { result in
+                switch result {
+                case .success(let response):
+                    //do {
+                        let castResponseDTO = try! JSONDecoder().decode(CastResponseDTO.self, from: response.data)
+                        continuation.resume(returning: castResponseDTO)
+                    //} catch {
+                     //   continuation.resume(throwing: error)
+                    //}
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
 }
