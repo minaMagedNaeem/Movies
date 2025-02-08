@@ -51,12 +51,12 @@ final class MovieDetailsViewModel: Sendable {
                 movieDetails = movieDetails
                 
                 DispatchQueue.main.async {
-                                self.getMovieDetailsDelegate?.didFetchMovieDetails(movieDetails)
-                            }
+                    self.getMovieDetailsDelegate?.didFetchMovieDetails(movieDetails)
+                }
             } catch {
                 DispatchQueue.main.async {
-                                self.getMovieDetailsDelegate?.didFailWithError("Error Fetching movie details")
-                            }
+                    self.getMovieDetailsDelegate?.didFailWithError("Error Fetching movie details")
+                }
             }
         }
         getMovieDetailsDelegate?.didFinishLoading()

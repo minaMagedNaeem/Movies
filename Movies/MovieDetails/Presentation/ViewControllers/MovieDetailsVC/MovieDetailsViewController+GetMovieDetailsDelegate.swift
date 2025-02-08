@@ -5,18 +5,18 @@
 //  Created by Mina Maged on 07/02/2025.
 //
 
+import Foundation
+
 extension MovieDetailsViewController: GetMovieDetailsDelegate {
     func didFetchMovieDetails(_ details: MovieDetails) {
         updateUI(with: details)
     }
     
     func didStartLoading() {
-        scrollView.isHidden = true
         self.view.startProgressAnim()
     }
     
     func didFinishLoading() {
-        scrollView.isHidden = false
         self.view.stopProgressAnim()
     }
     

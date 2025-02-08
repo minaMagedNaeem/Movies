@@ -18,19 +18,15 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9s3-5j-uOy">
-                        <rect key="frame" x="8" y="8" width="134" height="200"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="200" id="fmQ-aV-ckC"/>
-                            <constraint firstAttribute="width" constant="134" id="xF5-hD-hnO"/>
-                        </constraints>
+                        <rect key="frame" x="8" y="8" width="134" height="208.33333333333334"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="8"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO3-4a-dyy">
-                        <rect key="frame" x="5" y="213" width="140" height="32"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO3-4a-dyy">
+                        <rect key="frame" x="8" y="224.33333333333334" width="134" height="17.666666666666657"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -40,11 +36,11 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="9s3-5j-uOy" secondAttribute="trailing" constant="8" id="C3x-IW-sYF"/>
-                <constraint firstAttribute="trailing" secondItem="zO3-4a-dyy" secondAttribute="trailing" constant="5" id="CI4-yv-7gL"/>
-                <constraint firstItem="zO3-4a-dyy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="HIm-bb-jxZ"/>
-                <constraint firstAttribute="bottom" secondItem="zO3-4a-dyy" secondAttribute="bottom" constant="5" id="UqT-Hm-XJP"/>
+                <constraint firstAttribute="trailing" secondItem="zO3-4a-dyy" secondAttribute="trailing" constant="8" id="CI4-yv-7gL"/>
+                <constraint firstItem="zO3-4a-dyy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="HIm-bb-jxZ"/>
+                <constraint firstAttribute="bottom" secondItem="zO3-4a-dyy" secondAttribute="bottom" constant="8" id="UqT-Hm-XJP"/>
                 <constraint firstItem="9s3-5j-uOy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="c0t-ZE-jNQ"/>
-                <constraint firstItem="zO3-4a-dyy" firstAttribute="top" secondItem="9s3-5j-uOy" secondAttribute="bottom" constant="5" id="gn0-mf-b3m"/>
+                <constraint firstItem="zO3-4a-dyy" firstAttribute="top" secondItem="9s3-5j-uOy" secondAttribute="bottom" constant="8" id="gn0-mf-b3m"/>
                 <constraint firstItem="9s3-5j-uOy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="noT-7d-duW"/>
             </constraints>
             <size key="customSize" width="327" height="372"/>

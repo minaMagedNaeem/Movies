@@ -18,7 +18,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var revenueLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var addToWatchlistButton: UIButton!
-
+    @IBOutlet weak var containerView: UIView!
+    
     private let viewModel: MovieDetailsViewModel
 
     init(viewModel: MovieDetailsViewModel) {

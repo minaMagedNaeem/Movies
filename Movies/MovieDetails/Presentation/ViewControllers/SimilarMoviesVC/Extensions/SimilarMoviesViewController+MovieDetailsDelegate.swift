@@ -7,16 +7,16 @@
 
 extension SimilarMoviesViewController: GetSimilarMoviesDelegate {
     func didFetchSimilarMovies() {
+        didFinishLoading()
         collectionView.reloadData()
     }
     
     func didStartLoading() {
-        //self.collectionView.startProgressAnim()
+        self.collectionView.startProgressAnim()
     }
     
     func didFinishLoading() {
-        //self.collectionView.stopProgressAnim()
-        //self.collectionView.layoutIfNeeded()
+        self.collectionView.stopProgressAnim()
     }
     
     func didFailWithError(_ error: String) {
