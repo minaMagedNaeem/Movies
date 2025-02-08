@@ -30,15 +30,16 @@ struct MovieRow: View {
             VStack(alignment: .leading, spacing: 6) {
                 Text(movie.title ?? "Movie name not available")
                     .titleFont() // Applies custom title font
+                    .foregroundColor(Color(AppColors.text))
 
                 Text(movie.overview ?? "Movie overview not available")
-                    .accentFont() // Uses accent font for the overview
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Color(AppColors.accent))
+                    .accentFont()
                     .lineLimit(nil)
 
                 HStack {
                     Image(systemName: movie.addedToWatchlist ? "bookmark.fill" : "bookmark")
-                        .foregroundColor(movie.addedToWatchlist ? .yellow : .gray)
+                        .foregroundColor(movie.addedToWatchlist ? Color(AppColors.accent) : Color.gray)
                     Text(movie.addedToWatchlist ? "On Watchlist" : "Not in Watchlist")
                         .font(.custom(AppFont.bodyFont, size: 14)) // Uses body font
                         .foregroundColor(.gray)
@@ -47,6 +48,11 @@ struct MovieRow: View {
             Spacer()
         }
         .padding(.vertical, 8)
+        .padding(.horizontal, 12)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(AppColors.cardBackground))
+        )
     }
 }
 

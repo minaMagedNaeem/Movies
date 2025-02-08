@@ -54,6 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func getMainAppFlow() -> UIViewController {
         let navigationController = UINavigationController()
+        navigationController.styleNavBar()
+        
         coordinator = AppCoordinator(navigationController: navigationController)
         coordinator?.start()
         
@@ -67,6 +69,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = mainAppFlowViewController
         window?.makeKeyAndVisible()
     }
-
 }
 

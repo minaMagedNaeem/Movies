@@ -23,21 +23,22 @@ struct MoviesListView: View {
                 searchBar
                 contentView
             }
+            .background(Color(AppColors.background).edgesIgnoringSafeArea(.all)) // Fix bottom white area
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) { // Avoids oversized title
+                ToolbarItem(placement: .topBarLeading) {
                     Text("Movies")
                         .titleFont()
-                        .foregroundColor(.primary)
+                        .foregroundColor(Color(AppColors.text)) // Fix title color
                 }
             }
             .onAppear {
-                            if !hasAppeared {
-                                hasAppeared = true
-                                Task {
-                                    await viewModel.loadMovies()
-                                }
-                            }
-                        }
+                if !hasAppeared {
+                    hasAppeared = true
+                    Task {
+                        await viewModel.loadMovies()
+                    }
+                }
+            }
         }
     }
 
@@ -45,7 +46,8 @@ struct MoviesListView: View {
     private var searchBar: some View {
         TextField("Search movies...", text: $searchText)
             .padding()
-            .background(Color(.systemGray6))
+            .background(Color(AppColors.cardBackground)) // Fix search bar color
+            .foregroundColor(Color(AppColors.text))
             .cornerRadius(8)
             .padding(.horizontal)
             .onChange(of: searchText) { newValue in
@@ -53,7 +55,7 @@ struct MoviesListView: View {
             }
     }
 
-    // MARK: - Content View (Loading, Empty States, or Movie List)
+    // MARK: - Content View
     @ViewBuilder
     private var contentView: some View {
         if viewModel.isLoading {
@@ -69,7 +71,9 @@ struct MoviesListView: View {
         VStack {
             Spacer()
             ProgressView {
-                Text("Loading...").accentFont()
+                Text("Loading...")
+                    .accentFont()
+                    .foregroundColor(Color(AppColors.accent)) // Fix color
             }
             Spacer()
         }
@@ -80,7 +84,7 @@ struct MoviesListView: View {
         VStack {
             Spacer()
             Text(searchText.isEmpty ? "No movies available" : "No search results found")
-                .foregroundColor(.gray)
+                .foregroundColor(Color(AppColors.accent))
                 .accentFont()
             Spacer()
         }
@@ -110,6 +114,7 @@ struct MoviesListView: View {
     private func sectionHeader(for year: Int) -> some View {
         Text(String(year))
             .titleFont()
+            .foregroundColor(Color(AppColors.accent))
             .padding(.top, 8)
     }
 
@@ -136,7 +141,6 @@ struct MoviesListView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: task)
     }
 }
-
 
 
 //#Preview {

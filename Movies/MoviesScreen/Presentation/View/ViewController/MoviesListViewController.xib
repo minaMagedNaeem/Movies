@@ -21,17 +21,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2R-Zu-NMV">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y2R-Zu-NMV" secondAttribute="trailing" id="8yK-Pq-CNO"/>
-                <constraint firstItem="y2R-Zu-NMV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="SXo-ol-M1U"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="y2R-Zu-NMV" secondAttribute="bottom" id="hh7-Jc-JdS"/>
-                <constraint firstItem="y2R-Zu-NMV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ote-RU-8hl"/>
+                <constraint firstAttribute="trailing" secondItem="y2R-Zu-NMV" secondAttribute="trailing" id="8yK-Pq-CNO"/>
+                <constraint firstItem="y2R-Zu-NMV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SXo-ol-M1U"/>
+                <constraint firstAttribute="bottom" secondItem="y2R-Zu-NMV" secondAttribute="bottom" id="hh7-Jc-JdS"/>
+                <constraint firstItem="y2R-Zu-NMV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ote-RU-8hl"/>
             </constraints>
             <point key="canvasLocation" x="138" y="20"/>
         </view>
