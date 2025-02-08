@@ -9,6 +9,7 @@ import UIKit
 
 class TopCastViewController: UIViewController {
 
+    @IBOutlet weak var castLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     private let viewModel: MovieDetailsViewModel
@@ -24,12 +25,22 @@ class TopCastViewController: UIViewController {
 
         override func viewDidLoad() {
             super.viewDidLoad()
+            
+            view.backgroundColor = AppColors.background
+            
+            castLabel.textColor = AppColors.text
+            castLabel.font = UIFont(name: AppFont.titleFont, size: 22)
+            
             setupTableView()
             
             viewModel.fetchCast()
         }
         
         private func setupTableView() {
+            
+            tableView.backgroundColor = AppColors.background
+            tableView.tableFooterView = UIView()
+            
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(UINib(nibName: "TopCastTableViewCell", bundle: nil), forCellReuseIdentifier: "CastCell")
@@ -56,10 +67,32 @@ extension TopCastViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "Top 5 Actors" : "Top 5 Directors"
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = AppColors.background
+                
+        let titleLabel = UILabel()
+        titleLabel.text = section == 0 ? "Top 5 Actors" : "Top 5 Directors"
+        titleLabel.textColor = AppColors.text
+        titleLabel.font = UIFont(name: AppFont.titleFont, size: 18)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+                
+        headerView.addSubview(titleLabel)
+                
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+            titleLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+        ])
+                
+        return headerView
+    }
 }
 
 extension TopCastViewController: GetTopCastDelegate {
     func didFetchTopCast() {
+        didFinishLoading()
         tableView.reloadData()
     }
     
@@ -69,7 +102,6 @@ extension TopCastViewController: GetTopCastDelegate {
     
     func didFinishLoading() {
         self.tableView.stopProgressAnim()
-        self.tableView.layoutIfNeeded()
     }
     
     func didFailWithError(_ error: String) {

@@ -90,6 +90,7 @@ final class MovieDetailsViewModel: Sendable {
     }
     
     func fetchCast() {
+        GetTopCastDelegate?.didStartLoading()
             Task {
                 do {
                     let movies = try await getSimilarMoviesUseCase.execute(movieId: movie.id)

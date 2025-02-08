@@ -15,12 +15,23 @@ class TopCastTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        setupUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    private func setupUI() {
+        self.backgroundColor = AppColors.background
+        profileName.font = UIFont(name: AppFont.bodyFont, size: 16)
+        profileName.textColor = AppColors.text
+            
+        profileImage.layer.cornerRadius = profileImage.frame.height / 2
+        profileImage.clipsToBounds = true
     }
     
     func bind(with cast: Cast) {
