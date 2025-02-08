@@ -23,6 +23,7 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
         movieTitle.text = movie.title
         
         if let imagePath = movie.posterPath, let url = URL(string: "\(IMAGESBASEURL)\(imagePath)") {
+            movieImage.kf.indicatorType = .activity
             movieImage.kf.setImage(
                 with: url,
                 placeholder: UIImage(named: "placeholder"),

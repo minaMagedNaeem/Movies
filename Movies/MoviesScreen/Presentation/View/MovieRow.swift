@@ -14,12 +14,17 @@ struct MovieRow: View {
         HStack(alignment: .top, spacing: 12) {
             if let posterPath = movie.posterPath {
                 KFImage(URL(string: "\(IMAGESBASEURL)\(posterPath)"))
+                    .placeholder {
+                            ProgressView()
+                                .frame(width: 80, height: 120)
+                        }
                     .fade(duration: 0.25)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 80, height: 120)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(radius: 3)
+                
             }
 
             VStack(alignment: .leading, spacing: 6) {

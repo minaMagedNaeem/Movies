@@ -27,6 +27,7 @@ class TopCastTableViewCell: UITableViewCell {
         profileName.text = cast.name ?? "N/A"
         
         if let imagePath = cast.profilePath, let url = URL(string: "\(IMAGESBASEURL)\(imagePath)") {
+            profileImage.kf.indicatorType = .activity
             profileImage.kf.setImage(
                 with: url,
                 placeholder: UIImage(named: "placeholder"),

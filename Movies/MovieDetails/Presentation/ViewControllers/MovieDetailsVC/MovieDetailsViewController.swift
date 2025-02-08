@@ -64,9 +64,9 @@ class MovieDetailsViewController: UIViewController {
     
     private func bindImage(with imagePath: String?) {
         if let imagePath = imagePath, let url = URL(string: "\(IMAGESBASEURL)\(imagePath)") {
+            movieImageView.kf.indicatorType = .activity
             movieImageView.kf.setImage(
                 with: url,
-                placeholder: UIImage(named: "placeholder"),
                 options: [
                     .transition(.fade(0.3)), // Smooth fade-in animation
                     .cacheOriginalImage // Cache the image
