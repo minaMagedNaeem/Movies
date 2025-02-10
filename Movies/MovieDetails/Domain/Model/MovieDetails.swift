@@ -6,8 +6,7 @@
 //
 import Foundation
 
-@MainActor
-class MovieDetails: Sendable {
+class MovieDetails: @unchecked Sendable {
     let id: Int
     let originalTitle, overview: String?
     let posterPath: String?

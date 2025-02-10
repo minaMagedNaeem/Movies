@@ -6,8 +6,7 @@
 //
 import Foundation
 
-@MainActor
-final class MovieDetailsViewModel {
+final class MovieDetailsViewModel: Sendable {
     
     let maxSimilarMoviesNumber = 5
     
