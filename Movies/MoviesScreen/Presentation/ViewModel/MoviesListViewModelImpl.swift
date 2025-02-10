@@ -11,7 +11,7 @@ import SwiftUI
 class MoviesListViewModelImpl: MoviesViewModel {
     private let getMoviesUseCase: GetMoviesUseCase
     private let searchMoviesUseCase: SearchMoviesUsecase
-    private let coordinator: Coordinator
+    private weak var coordinator: Coordinator?
     
     private var movies: [Movie] = []
     @Published var isLoading = false
@@ -22,7 +22,7 @@ class MoviesListViewModelImpl: MoviesViewModel {
     private var hasMoreMovies = true
     private var currentKeyword: String?
     
-    init(getMoviesUseCase: GetMoviesUseCase, searchMoviesUseCase: SearchMoviesUsecase, coordinator: Coordinator) {
+    init(getMoviesUseCase: GetMoviesUseCase, searchMoviesUseCase: SearchMoviesUsecase, coordinator: Coordinator?) {
         self.getMoviesUseCase = getMoviesUseCase
         self.searchMoviesUseCase = searchMoviesUseCase
         self.coordinator = coordinator
@@ -72,7 +72,7 @@ class MoviesListViewModelImpl: MoviesViewModel {
     }
     
     public func goToDetails(of movie: Movie) {
-        coordinator.navigate(to: .movieDetails(movie: movie))
+        coordinator?.navigate(to: .movieDetails(movie: movie))
     }
     
     private func getYear(from date: Date?) -> Int {

@@ -57,7 +57,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController.styleNavBar()
         
         coordinator = AppCoordinator(navigationController: navigationController)
-        coordinator?.start()
+        DispatchQueue.main.async { [weak self] in
+            self?.coordinator?.start()
+        }
         
         return navigationController
     }

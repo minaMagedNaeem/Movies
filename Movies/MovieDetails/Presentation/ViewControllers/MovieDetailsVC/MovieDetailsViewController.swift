@@ -107,7 +107,7 @@ class MovieDetailsViewController: UIViewController {
         addToWatchlistButton.backgroundColor = AppColors.cardBackground
         addToWatchlistButton.layer.cornerRadius = 8
         
-        addToWatchlistButton.setTitle("On Watch List", for: .selected)
+        addToWatchlistButton.setTitle("On Watchlist", for: .selected)
         addToWatchlistButton.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
         addToWatchlistButton.setTitleColor(AppColors.text, for: .selected)
         addToWatchlistButton.backgroundColor = AppColors.primary

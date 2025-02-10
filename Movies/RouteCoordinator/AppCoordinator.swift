@@ -23,9 +23,7 @@ class AppCoordinator: @preconcurrency Coordinator {
             let moviesListVC = MoviesListFactory.get(coordinator: self)
             navigationController.setViewControllers([moviesListVC], animated: false)
         case .movieDetails(movie: let movie):
-            
             let movieDetailsTabBarVC = MovieDetailsScreenFactory.get(movie: movie, coordinator: self)
-            
             navigationController.pushViewController(movieDetailsTabBarVC, animated: true)
         }
     }

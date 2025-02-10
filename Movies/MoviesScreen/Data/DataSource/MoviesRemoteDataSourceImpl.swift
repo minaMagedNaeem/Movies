@@ -6,12 +6,19 @@
 //
 import Combine
 import Foundation
+import Moya
 
 class MoviesRemoteDataSource: MoviesDataSource {
     
+    let apiProvider: MoyaProvider<MoviesAPI>
+    
+    required init(apiProvider: MoyaProvider<MoviesAPI>) {
+        self.apiProvider = apiProvider
+    }
+    
     func fetchMovies(page: Int) async throws -> [MovieDTO] {
         return try await withCheckedThrowingContinuation { continuation in
-            moviesAPIProvider.request(.getMovies(page: page)) { result in
+            apiProvider.request(.getMovies(page: page)) { result in
                 switch result {
                 case .success(let response):
                     do {
@@ -29,7 +36,7 @@ class MoviesRemoteDataSource: MoviesDataSource {
     
     func searchMovies(page: Int, keyword: String) async throws -> [MovieDTO] {
         return try await withCheckedThrowingContinuation { continuation in
-            moviesAPIProvider.request(.searchMovies(page: page, keyword: keyword)) { result in
+            apiProvider.request(.searchMovies(page: page, keyword: keyword)) { result in
                 switch result {
                 case .success(let response):
                     do {

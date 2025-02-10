@@ -17,7 +17,7 @@ final class MovieDetailsViewModel: Sendable {
     private let getMovieDetailsUseCase: GetMovieDetailsUsecase
     private let getSimilarMoviesUseCase: GetSimilarMoviesUsecase
     private let getCastAndCrewUseCase: GetCastAndCrewUsecase
-    private let coordinator: Coordinator
+    private weak var coordinator: Coordinator?
     
     private var movieDetails: MovieDetails?
     private var similarMovies: [Movie]?
