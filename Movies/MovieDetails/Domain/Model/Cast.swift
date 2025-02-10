@@ -14,18 +14,18 @@ class Cast {
     let department: Department?
     
     init(id: Int,
-             knownForDepartment: Department?,
-             name: String?,
-             originalName: String?,
-             popularity: Double?,
-             profilePath: String?,
-             department: Department?) {
-            self.id = id
-            self.knownForDepartment = knownForDepartment
-            self.name = name
-            self.originalName = originalName
-            self.popularity = popularity
-            self.profilePath = profilePath
-            self.department = department
-        }
+         knownForDepartment: Department?,
+         name: String?,
+         originalName: String?,
+         popularity: Double?,
+         profilePath: String?,
+         department: Department?) {
+        self.id = id
+        self.knownForDepartment = knownForDepartment
+        self.name = name
+        self.originalName = originalName
+        self.popularity = popularity
+        self.profilePath = profilePath
+        self.department = department
+    }
 }

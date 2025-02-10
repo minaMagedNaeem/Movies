@@ -8,16 +8,17 @@
 import SwiftUI
 
 @MainActor
-class MoviesViewModel: ObservableObject {
+class MoviesListViewModelImpl: MoviesViewModel {
     private let getMoviesUseCase: GetMoviesUseCase
     private let searchMoviesUseCase: SearchMoviesUsecase
     private let coordinator: Coordinator
-
-    @Published var movies: [Movie] = []
+    
+    private var movies: [Movie] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    private var currentPage = 1
+    private let defaultPage = 1
+    private var currentPage: Int
     private var hasMoreMovies = true
     private var currentKeyword: String?
     
@@ -25,18 +26,19 @@ class MoviesViewModel: ObservableObject {
         self.getMoviesUseCase = getMoviesUseCase
         self.searchMoviesUseCase = searchMoviesUseCase
         self.coordinator = coordinator
+        self.currentPage = defaultPage
     }
-
-    var groupedMovies: [Int: [Movie]] {
+    
+    public var groupedMovies: [Int: [Movie]] {
         Dictionary(grouping: movies, by: { getYear(from: $0.releaseDate) })
     }
-
-    func loadMovies() async {
+    
+    public func loadMovies() async {
         guard !isLoading, hasMoreMovies else { return }
-
+        
         isLoading = true
         errorMessage = nil
-
+        
         do {
             var newMovies: [Movie]
             
@@ -55,12 +57,12 @@ class MoviesViewModel: ObservableObject {
         } catch {
             errorMessage = "Failed to load movies: \(error.localizedDescription)"
         }
-
+        
         isLoading = false
     }
     
-    func searchMovies(keyword: String) async {
-        currentPage = 1
+    public func searchMovies(keyword: String) async {
+        currentPage = defaultPage
         hasMoreMovies = true
         movies.removeAll()
         
@@ -69,13 +71,13 @@ class MoviesViewModel: ObservableObject {
         await loadMovies()
     }
     
-    func goToDetails(of movie: Movie) {
+    public func goToDetails(of movie: Movie) {
         coordinator.navigate(to: .movieDetails(movie: movie))
     }
     
     private func getYear(from date: Date?) -> Int {
         
-        guard let date = date else {return 0} //0 to put it at the end of the list
+        guard let date = date else {return 0}
         
         let calendar = Calendar.current
         return calendar.component(.year, from: date)

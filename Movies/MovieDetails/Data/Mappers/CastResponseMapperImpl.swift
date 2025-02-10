@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CastResponseMapper {
+class CastResponseMapperImpl {
     static func map(from castResponseDTO: CastResponseDTO) -> CastInfo {
         
         let cast = castResponseDTO.cast.map { cast in

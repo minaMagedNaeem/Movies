@@ -15,7 +15,7 @@ class MoviesRemoteDataSource: MoviesDataSource {
                 switch result {
                 case .success(let response):
                     do {
-                    let movies = try JSONDecoder().decode(MoviesResponseDTO.self, from: response.data).results
+                        let movies = try JSONDecoder().decode(MoviesResponseDTO.self, from: response.data).results
                         continuation.resume(returning: movies)
                     } catch {
                         continuation.resume(throwing: error)
@@ -33,7 +33,7 @@ class MoviesRemoteDataSource: MoviesDataSource {
                 switch result {
                 case .success(let response):
                     do {
-                    let movies = try JSONDecoder().decode(MoviesResponseDTO.self, from: response.data).results
+                        let movies = try JSONDecoder().decode(MoviesResponseDTO.self, from: response.data).results
                         continuation.resume(returning: movies)
                     } catch {
                         continuation.resume(throwing: error)

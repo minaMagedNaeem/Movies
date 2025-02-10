@@ -15,6 +15,4 @@ class GetSimilarMoviesUsecaseImpl: GetSimilarMoviesUsecase {
     func execute(movieId: Int) async throws -> [Movie] {
         return try await repo.getSimilarMovies(to: movieId)
     }
-    
-    
 }

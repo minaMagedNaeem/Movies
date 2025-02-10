@@ -21,7 +21,7 @@ struct AppColors {
         }
 
         guard hexSanitized.count == 6 else {
-            return UIColor.gray // Return default color if invalid hex
+            return UIColor.gray
         }
 
         var rgb: UInt64 = 0

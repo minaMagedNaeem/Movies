@@ -10,7 +10,7 @@ extension Text {
     func titleFont() -> Text {
         self.font(.custom(AppFont.titleFont, size: 24))
     }
-
+    
     func accentFont() -> Text {
         self.font(.custom(AppFont.accentFont, size: 18))
     }

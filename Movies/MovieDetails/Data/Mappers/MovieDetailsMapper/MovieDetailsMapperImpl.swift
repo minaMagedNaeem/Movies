@@ -7,8 +7,8 @@
 
 import Foundation
 
-class MovieDetailsMapper {
-    static func map(from movieDetailDTO: MovieDetailsDTO) -> MovieDetails {
+class MovieDetailsMapperImpl: MovieDetailsMapper {
+    func map(from movieDetailDTO: MovieDetailsDTO) -> MovieDetails {
         return MovieDetails(id: movieDetailDTO.id,
                             originalTitle: movieDetailDTO.originalTitle,
                             overview: movieDetailDTO.overview,

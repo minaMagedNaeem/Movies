@@ -11,7 +11,7 @@ import Kingfisher
 class SimilarMoviesCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "SimilarMovieCell"
-
+    
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
     override func awakeFromNib() {
@@ -35,10 +35,9 @@ class SimilarMoviesCollectionViewCell: UICollectionViewCell {
             movieImage.kf.indicatorType = .activity
             movieImage.kf.setImage(
                 with: url,
-                placeholder: UIImage(named: "placeholder"),
                 options: [
-                    .transition(.fade(0.3)), // Smooth fade-in animation
-                    .cacheOriginalImage // Cache the image
+                    .transition(.fade(0.3)),
+                    .cacheOriginalImage
                 ]
             )
         }

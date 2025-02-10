@@ -9,7 +9,7 @@ import SwiftUI
 struct NoSearchResultsView: View {
     var body: some View {
         VStack {
-            Image(systemName: "magnifyingglass")  // Glass icon
+            Image(systemName: "magnifyingglass")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100, height: 100)

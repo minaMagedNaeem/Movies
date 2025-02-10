@@ -14,9 +14,9 @@ extension Date {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // Ensures reliable parsing
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Optional: Set timezone if needed
-
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
         if let date = dateFormatter.date(from: rawDate) {
             self = date
         } else {

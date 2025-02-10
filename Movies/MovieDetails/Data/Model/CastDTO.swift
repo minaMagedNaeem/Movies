@@ -12,7 +12,7 @@ class CastDTO: Codable {
     let popularity: Double
     let profilePath: String?
     let department: Department?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case knownForDepartment = "known_for_department"

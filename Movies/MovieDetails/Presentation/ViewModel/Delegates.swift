@@ -12,7 +12,6 @@ protocol MovieDetailsViewModelDelegate: AnyObject {
 }
 
 protocol GetMovieDetailsDelegate: MovieDetailsViewModelDelegate {
-    
     func didFetchMovieDetails(_ details: MovieDetails)
 }
 

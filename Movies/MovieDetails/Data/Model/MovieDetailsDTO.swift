@@ -12,7 +12,7 @@ class MovieDetailsDTO: Codable {
     let releaseDate: String?
     let revenue: Int?
     let status, tagline, title: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case originalTitle = "original_title"

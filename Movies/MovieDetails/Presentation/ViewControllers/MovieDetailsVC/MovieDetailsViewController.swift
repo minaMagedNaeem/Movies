@@ -21,48 +21,48 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     
     private let viewModel: MovieDetailsViewModel
-
+    
     init(viewModel: MovieDetailsViewModel) {
-            self.viewModel = viewModel
-            super.init(nibName: "MovieDetailsViewController", bundle: nil)
-        }
-
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setupUI()
-            
-            loadMovieDetails()
-            
-            bindAddToWatchListButton(with: viewModel.movieIsAddedToWatchList)
-        }
-
-        private func loadMovieDetails() {
-            viewModel.fetchMovieDetails()
-        }
+        self.viewModel = viewModel
+        super.init(nibName: "MovieDetailsViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+        
+        loadMovieDetails()
+        
+        bindAddToWatchListButton(with: viewModel.movieIsAddedToWatchList)
+    }
+    
+    private func loadMovieDetails() {
+        viewModel.fetchMovieDetails()
+    }
     
     private func setupUI() {
         view.backgroundColor = AppColors.background
         scrollView.backgroundColor = AppColors.background
-
+        
         movieImageView.layer.cornerRadius = 12
         movieImageView.clipsToBounds = true
-
+        
         titleLabel.textColor = AppColors.text
         taglineLabel.textColor = AppColors.accent
         overviewLabel.textColor = AppColors.text.withAlphaComponent(0.8)
         releaseDateLabel.textColor = AppColors.accent
         revenueLabel.textColor = AppColors.primary
         statusLabel.textColor = AppColors.primary
-
+        
         addToWatchlistButton.backgroundColor = AppColors.primary
         addToWatchlistButton.setTitleColor(AppColors.text, for: .normal)
         addToWatchlistButton.layer.cornerRadius = 8
     }
-
+    
     func updateUI(with movieDetails: MovieDetails) {
         bindLabels(with: movieDetails)
         bindImage(with: movieDetails.posterPath)
@@ -80,8 +80,8 @@ class MovieDetailsViewController: UIViewController {
     private func getDateRepresentation(from date: Date?) -> String {
         guard let date = date else { return "N/A" }
         let formatter = DateFormatter()
-            formatter.dateFormat = "dd MMM yyyy"
-            return formatter.string(from: date)
+        formatter.dateFormat = "dd MMM yyyy"
+        return formatter.string(from: date)
     }
     
     private func bindImage(with imagePath: String?) {
@@ -90,8 +90,8 @@ class MovieDetailsViewController: UIViewController {
             movieImageView.kf.setImage(
                 with: url,
                 options: [
-                    .transition(.fade(0.3)), // Smooth fade-in animation
-                    .cacheOriginalImage // Cache the image
+                    .transition(.fade(0.3)),
+                    .cacheOriginalImage
                 ]
             )
         }
@@ -103,23 +103,22 @@ class MovieDetailsViewController: UIViewController {
         
         addToWatchlistButton.setTitle("Add to Watch List", for: .normal)
         addToWatchlistButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        addToWatchlistButton.setTitleColor(AppColors.text.withAlphaComponent(0.7), for: .normal) // Lightened text for visibility
-        addToWatchlistButton.backgroundColor = AppColors.cardBackground // Blends with UI
+        addToWatchlistButton.setTitleColor(AppColors.text.withAlphaComponent(0.7), for: .normal)
+        addToWatchlistButton.backgroundColor = AppColors.cardBackground
         addToWatchlistButton.layer.cornerRadius = 8
-
+        
         addToWatchlistButton.setTitle("On Watch List", for: .selected)
         addToWatchlistButton.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
-        addToWatchlistButton.setTitleColor(AppColors.text, for: .selected) // White text for contrast
-        addToWatchlistButton.backgroundColor = AppColors.primary // Highlighted when selected
+        addToWatchlistButton.setTitleColor(AppColors.text, for: .selected)
+        addToWatchlistButton.backgroundColor = AppColors.primary
         
         addToWatchlistButton.isSelected = movieIsAddedToWatchList
     }
-
+    
     
     @IBAction func addToWatchlistPressed(_ sender: Any) {
         addToWatchlistButton.isSelected = !addToWatchlistButton.isSelected
         
-        viewModel.movieIsAddedToWatchList = !viewModel.movieIsAddedToWatchList
+        viewModel.toggleMovieAddToWatchlist()
     }
-    
 }

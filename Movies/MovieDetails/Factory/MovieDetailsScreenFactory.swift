@@ -9,7 +9,13 @@ class MovieDetailsScreenFactory {
     static func get(movie: Movie, coordinator: Coordinator) -> MovieDetailsTabBarViewController {
         
         let datasource = MovieDetailsDatasourceImpl()
-        let repo = MovieDetailsRepoImpl(remoteDataSource: datasource)
+        let moviesMapper = MoviesMapperImpl()
+        let movieDetailsMapper = MovieDetailsMapperImpl()
+        let castMapper = CastResponseMapperImpl()
+        let repo = MovieDetailsRepoImpl(remoteDataSource: datasource,
+                                        movieDetailsMapper: movieDetailsMapper,
+                                        moviesMapper: moviesMapper,
+                                        castResponseMapper: castMapper)
         let getMovieDetailsUsecase = GetMovieDetailsUsecaseImpl(movieDetailsRepo: repo)
         let getSimilarMoviesUsecase = GetSimilarMoviesUsecaseImpl(movieDetailsRepo: repo)
         let getCastAndCrewUsecase = GetCaseAndCrewUsecaseImpl(movieDetailsRepo: repo)

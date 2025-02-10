@@ -6,7 +6,8 @@
 //
 import Foundation
 
-final class MovieDetailsViewModel: Sendable {
+@MainActor
+final class MovieDetailsViewModel {
     
     let maxSimilarMoviesNumber = 5
     
@@ -25,17 +26,26 @@ final class MovieDetailsViewModel: Sendable {
     private var topDirectors: [Cast]?
     
     var movieIsAddedToWatchList: Bool {
-            get {
-                return movie.addedToWatchlist
-            }
-            set {
-                movie.addedToWatchlist = newValue
-            }
-        }
+        return movie.addedToWatchlist
+    }
     
-    init(movie: Movie, movieUseCase: GetMovieDetailsUsecase, getSimilarMoviesUsecase: GetSimilarMoviesUsecase, getCastAndCrewUsecase: GetCastAndCrewUsecase, coordinator: Coordinator)
-         //castUseCase: MovieCastUseCase)
-    {
+    var topActorsCount: Int {
+        return topActors?.count ?? 0
+    }
+    
+    var topDirectorsCount: Int {
+        return topDirectors?.count ?? 0
+    }
+    
+    var similarMoviesCount: Int {
+        return similarMovies?.count ?? 0
+    }
+    
+    init(movie: Movie,
+         movieUseCase: GetMovieDetailsUsecase,
+         getSimilarMoviesUsecase: GetSimilarMoviesUsecase,
+         getCastAndCrewUsecase: GetCastAndCrewUsecase,
+         coordinator: Coordinator) {
         self.movie = movie
         self.coordinator = coordinator
         self.getMovieDetailsUseCase = movieUseCase
@@ -81,54 +91,40 @@ final class MovieDetailsViewModel: Sendable {
         }
     }
     
-    var similarMoviesCount: Int {
-        return similarMovies?.count ?? 0
+    func fetchCast() {
+        GetTopCastDelegate?.didStartLoading()
+        Task {
+            do {
+                let movies = try await getSimilarMoviesUseCase.execute(movieId: movie.id)
+                self.similarMovies = Array(movies.prefix(5))
+                
+                var allCasts: [Cast] = []
+                
+                for movie in self.similarMovies ?? [] {
+                    let castInfo = try await getCastAndCrewUseCase.execute(of: movie.id)
+                    allCasts.append(contentsOf: castInfo.cast)
+                    allCasts.append(contentsOf: castInfo.crew)
+                }
+                
+                let actors = allCasts.filter { $0.department == .acting }
+                let directors = allCasts.filter { $0.department == .directing }
+                
+                self.topActors = Array(actors.sorted(by: { ($0.popularity ?? 0) > ($1.popularity ?? 0) }).prefix(5))
+                self.topDirectors = Array(directors.sorted(by: { ($0.popularity ?? 0) > ($1.popularity ?? 0) }).prefix(5))
+                
+                DispatchQueue.main.async {
+                    self.GetTopCastDelegate?.didFetchTopCast()
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.GetTopCastDelegate?.didFailWithError("Failed to fetch cast details.")
+                }
+            }
+        }
     }
     
     func getSimilarMovie(at index: Int) -> Movie? {
         return similarMovies?[index]
-    }
-    
-    func fetchCast() {
-        GetTopCastDelegate?.didStartLoading()
-            Task {
-                do {
-                    let movies = try await getSimilarMoviesUseCase.execute(movieId: movie.id)
-                    self.similarMovies = Array(movies.prefix(5))
-                    
-                    var allCasts: [Cast] = []
-                    
-                    for movie in self.similarMovies ?? [] {
-                        let castInfo = try await getCastAndCrewUseCase.execute(of: movie.id)
-                        allCasts.append(contentsOf: castInfo.cast)
-                        allCasts.append(contentsOf: castInfo.crew)
-                    }
-
-                    // Filter only Actors and Directors
-                    let actors = allCasts.filter { $0.department == .acting }
-                    let directors = allCasts.filter { $0.department == .directing }
-
-                    // Sort by popularity
-                    self.topActors = Array(actors.sorted(by: { ($0.popularity ?? 0) > ($1.popularity ?? 0) }).prefix(5))
-                    self.topDirectors = Array(directors.sorted(by: { ($0.popularity ?? 0) > ($1.popularity ?? 0) }).prefix(5))
-
-                    DispatchQueue.main.async {
-                        self.GetTopCastDelegate?.didFetchTopCast()
-                    }
-                } catch {
-                    DispatchQueue.main.async {
-                        self.GetTopCastDelegate?.didFailWithError("Failed to fetch cast details.")
-                    }
-                }
-            }
-        }
-    
-    var topActorsCount: Int {
-        return topActors?.count ?? 0
-    }
-    
-    var topDirectorsCount: Int {
-        return topDirectors?.count ?? 0
     }
     
     func getActor(at index: Int) -> Cast? {
@@ -137,5 +133,9 @@ final class MovieDetailsViewModel: Sendable {
     
     func getDirector(at index: Int) -> Cast? {
         return topDirectors?[index]
+    }
+    
+    func toggleMovieAddToWatchlist() {
+        self.movie.addedToWatchlist.toggle()
     }
 }

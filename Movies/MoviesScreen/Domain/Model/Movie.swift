@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+@MainActor
 class Movie: ObservableObject, Identifiable, Sendable {
     let id: Int
     let originalLanguage, originalTitle, overview: String?

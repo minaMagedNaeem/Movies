@@ -41,7 +41,6 @@ class TopCastTableViewCell: UITableViewCell {
             profileImage.kf.indicatorType = .activity
             profileImage.kf.setImage(
                 with: url,
-                placeholder: UIImage(named: "placeholder"),
                 options: [
                     .transition(.fade(0.3)),
                     .cacheOriginalImage

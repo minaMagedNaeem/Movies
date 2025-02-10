@@ -6,8 +6,8 @@
 //
 import Foundation
 
-class MoviesMapper {
-    static func map(moviesDTO: [MovieDTO]) -> [Movie] {
+class MoviesMapperImpl: MoviesMapper {
+    func map(moviesDTO: [MovieDTO]) -> [Movie] {
         return moviesDTO.map { movie in
             Movie(id: movie.id,
                   originalLanguage: movie.originalLanguage,
@@ -20,15 +20,15 @@ class MoviesMapper {
         }
     }
     
-    static func getDate(from rawDate: String?) -> Date? {
+    private func getDate(from rawDate: String?) -> Date? {
         
         guard let rawDate = rawDate else {return nil}
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // Ensures reliable parsing
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Optional: Set timezone if needed
-
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
         return dateFormatter.date(from: rawDate)
     }
 }

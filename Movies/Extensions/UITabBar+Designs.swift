@@ -16,12 +16,12 @@ extension UITabBar {
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: AppColors.primary]
         appearance.stackedLayoutAppearance.normal.iconColor = .gray
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.gray]
-
-            self.standardAppearance = appearance
-            if #available(iOS 15.0, *) {
-                self.scrollEdgeAppearance = appearance
-            }
-
-            self.isTranslucent = false
+        
+        self.standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            self.scrollEdgeAppearance = appearance
+        }
+        
+        self.isTranslucent = false
     }
 }

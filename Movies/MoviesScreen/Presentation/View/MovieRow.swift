@@ -9,15 +9,15 @@ import Kingfisher
 
 struct MovieRow: View {
     @ObservedObject var movie: Movie
-
+    
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             if let posterPath = movie.posterPath {
                 KFImage(URL(string: "\(IMAGESBASEURL)\(posterPath)"))
                     .placeholder {
-                            ProgressView()
-                                .frame(width: 80, height: 120)
-                        }
+                        ProgressView()
+                            .frame(width: 80, height: 120)
+                    }
                     .fade(duration: 0.25)
                     .resizable()
                     .scaledToFill()
@@ -26,17 +26,17 @@ struct MovieRow: View {
                     .shadow(radius: 3)
                 
             }
-
+            
             VStack(alignment: .leading, spacing: 6) {
                 Text(movie.title ?? "Movie name not available")
-                    .titleFont() // Applies custom title font
+                    .titleFont()
                     .foregroundColor(Color(AppColors.text))
-
+                
                 Text(movie.overview ?? "Movie overview not available")
                     .foregroundColor(Color(AppColors.accent))
                     .accentFont()
                     .lineLimit(nil)
-
+                
                 HStack {
                     Image(systemName: movie.addedToWatchlist ? "bookmark.fill" : "bookmark")
                         .foregroundColor(movie.addedToWatchlist ? Color(AppColors.accent) : Color.gray)

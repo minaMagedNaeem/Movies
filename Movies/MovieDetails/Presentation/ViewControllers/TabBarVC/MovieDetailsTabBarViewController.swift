@@ -16,8 +16,6 @@ class MovieDetailsTabBarViewController: UITabBarController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -28,7 +26,6 @@ class MovieDetailsTabBarViewController: UITabBarController {
         setupTabs()
     }
     
-
     private func setupTabs() {
         tabBarController?.tabBar.tintColor = AppColors.primary
         

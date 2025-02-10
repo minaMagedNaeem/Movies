@@ -8,10 +8,11 @@
 class MoviesListFactory {
     @MainActor static func get(coordinator: Coordinator) -> MoviesListViewController {
         let moviesDataSource = MoviesRemoteDataSource()
-        let moviesRepo = MovieRepositoryImpl(remoteDataSource: moviesDataSource)
+        let moviesMapper = MoviesMapperImpl()
+        let moviesRepo = MovieRepositoryImpl(remoteDataSource: moviesDataSource, moviesMapper: moviesMapper)
         let getMoviesUseCase = GetMoviesUseCaseImpl(repository: moviesRepo)
         let searchMoviesUseCase = SearchMoviesUseCaseImpl(repository: moviesRepo)
-        let viewModel = MoviesViewModel(getMoviesUseCase: getMoviesUseCase, searchMoviesUseCase: searchMoviesUseCase, coordinator: coordinator)
+        let viewModel = MoviesListViewModelImpl(getMoviesUseCase: getMoviesUseCase, searchMoviesUseCase: searchMoviesUseCase, coordinator: coordinator)
         let moviesListView = MoviesListView(viewModel: viewModel)
         
         return MoviesListViewController(moviesListView: moviesListView)

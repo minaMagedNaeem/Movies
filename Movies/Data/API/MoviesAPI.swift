@@ -11,7 +11,7 @@ import Alamofire
 import Reachability
 
 enum MoviesAPI : TargetType {
-        
+    
     case getMovies(page: Int)
     case searchMovies(page: Int, keyword: String)
     case getMovieDetails(movieId: Int)
@@ -135,8 +135,7 @@ final class ErrorHandlerPlugin : PluginType {
         
         guard case Result.failure(let error) = result else { return }
         
-        print(try? error.response?.mapJSON() as Any)
-        
+        print(try? error.response?.mapJSON())
     }
 }
 
