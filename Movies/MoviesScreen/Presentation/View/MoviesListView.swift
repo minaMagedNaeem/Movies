@@ -43,15 +43,34 @@ struct MoviesListView: View {
     }
     
     private var searchBar: some View {
-        TextField("Search movies...", text: $searchText)
+        HStack {
+            TextField("Search movies...", text: $searchText, onCommit: {
+                Task {
+                    await viewModel.searchMovies(keyword: searchText)
+                }
+            })
             .padding()
             .background(Color(AppColors.cardBackground))
             .foregroundColor(Color(AppColors.text))
             .cornerRadius(8)
-            .padding(.horizontal)
+            .autocapitalization(.none) // iOS 14-compatible
+            .disableAutocorrection(true)
+            .keyboardType(.webSearch)
             .onChange(of: searchText) { newValue in
                 debounceSearch(keyword: newValue)
             }
+            
+            if !searchText.isEmpty {
+                Button(action: {
+                    searchText = ""
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                }
+                .padding(.trailing, 8)
+            }
+        }
+        .padding(.horizontal)
     }
     
     @ViewBuilder

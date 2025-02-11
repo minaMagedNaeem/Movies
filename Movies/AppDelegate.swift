@@ -7,12 +7,10 @@
 
 import UIKit
 import netfox
+import IQKeyboardManager
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -21,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         setKingfisherToken()
+        
+        IQKeyboardManager.shared().isEnabled = true
         
         return true
     }
