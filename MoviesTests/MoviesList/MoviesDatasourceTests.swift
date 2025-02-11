@@ -98,9 +98,7 @@ final class MoviesRemoteDataSourceTests: XCTestCase {
         
         let response = Moya.Response(statusCode: 200, data: jsonData)
         mockProvider.mockResponse = .success(response)
-        
-        //let expectation = self.expectation(description: "Search movies successfully")
-        
+                
         // When
         do {
             let movies = try await dataSource.searchMovies(page: 1, keyword: "test")
@@ -112,51 +110,20 @@ final class MoviesRemoteDataSourceTests: XCTestCase {
         } catch {
             XCTFail("Expected success but got failure")
         }
-        
-        
-//        dataSource.searchMovies(page: 1, keyword: "Test") { result in
-//            switch result {
-//            case .success(let movies):
-//                XCTAssertEqual(movies.count, 1)
-//                XCTAssertEqual(movies.first?.id, 2)
-//                XCTAssertEqual(movies.first?.title, "Searched Movie")
-//                expectation.fulfill()
-//            case .failure:
-//                XCTFail("Expected success but got failure")
-//            }
-//        }
-        
-        //waitForExpectations(timeout: 2, handler: nil)
     }
     
     func testSearchMovies_Failure() async {
         // Given
         mockProvider.mockResponse = .failure(MoyaError.underlying(NSError(domain: "Network", code: -1009, userInfo: nil), nil))
         
-        //let expectation = self.expectation(description: "Search movies failure")
-        
-        // When
-//        dataSource.searchMovies(page: 1, keyword: "Test") { result in
-//            switch result {
-//            case .success:
-//                XCTFail("Expected failure but got success")
-//            case .failure(let error):
-//                XCTAssertNotNil(error)
-//                expectation.fulfill()
-//            }
-//        }
-        
         do {
             _ = try await dataSource.searchMovies(page: 1, keyword: "test")
-            
             
             XCTFail("Expected failure but got success")
         } catch(let error) {
             // Then
             XCTAssertNotNil(error)
         }
-        
-        //waitForExpectations(timeout: 2, handler: nil)
     }
 }
 
