@@ -7,8 +7,7 @@
 
 class MovieDetailsScreenFactory {
     static func get(movie: Movie, coordinator: Coordinator) -> MovieDetailsTabBarViewController {
-        
-        let datasource = MovieDetailsDatasourceImpl()
+        let datasource = MovieDetailsDatasourceImpl(apiProvider: moviesAPIProvider)
         let moviesMapper = MoviesMapperImpl()
         let movieDetailsMapper = MovieDetailsMapperImpl()
         let castMapper = CastResponseMapperImpl()

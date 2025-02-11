@@ -8,6 +8,7 @@
 import XCTest
 @testable import Movies
 
+@MainActor
 class MoviesViewModelTests: XCTestCase {
     var viewModel: MoviesListViewModelImpl!
     var getMoviesUseCase: GetMoviesUseCaseImpl!
@@ -18,7 +19,7 @@ class MoviesViewModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        mockDataSource = MockMoviesDataSource()
+        mockDataSource = MockMoviesDataSource(apiProvider: MockMoviesAPIProvider())
         let mapper = MoviesMapperImpl()
         mockRepository = MovieRepositoryImpl(remoteDataSource: mockDataSource, moviesMapper: mapper)
         getMoviesUseCase = GetMoviesUseCaseImpl(repository: mockRepository)

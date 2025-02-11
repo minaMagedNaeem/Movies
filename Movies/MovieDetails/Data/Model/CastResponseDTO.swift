@@ -6,5 +6,5 @@
 //
 
 class CastResponseDTO: Codable {
-    let cast, crew: [CastDTO]
+    let cast, crew: [CastDTO]?
 }

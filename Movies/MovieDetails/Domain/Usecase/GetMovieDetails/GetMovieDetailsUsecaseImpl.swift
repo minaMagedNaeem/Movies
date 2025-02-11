@@ -6,7 +6,6 @@
 //
 
 class GetMovieDetailsUsecaseImpl: GetMovieDetailsUsecase {
-    
     private var repo: MovieDetailsRepo
     
     init(movieDetailsRepo: MovieDetailsRepo) {
@@ -16,6 +15,4 @@ class GetMovieDetailsUsecaseImpl: GetMovieDetailsUsecase {
     func execute(movieId: Int) async throws -> MovieDetails {
         return try await repo.getMovieDetails(movieId: movieId)
     }
-    
-    
 }

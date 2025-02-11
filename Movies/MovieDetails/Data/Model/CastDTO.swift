@@ -9,7 +9,7 @@ class CastDTO: Codable {
     let id: Int
     let knownForDepartment: Department?
     let name, originalName: String?
-    let popularity: Double
+    let popularity: Double?
     let profilePath: String?
     let department: Department?
     

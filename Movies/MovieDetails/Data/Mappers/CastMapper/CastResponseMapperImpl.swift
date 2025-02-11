@@ -9,15 +9,15 @@ import Foundation
 
 class CastResponseMapperImpl: CastResponseMapper {
     func map(from castResponseDTO: CastResponseDTO) -> CastInfo {
-        let cast = castResponseDTO.cast.map { cast in
+        let cast = castResponseDTO.cast?.map { cast in
             getCast(from: cast)
         }
         
-        let crew = castResponseDTO.crew.map { crew in
+        let crew = castResponseDTO.crew?.map { crew in
             getCast(from: crew)
         }
         
-        return CastInfo(cast: cast, crew: crew)
+        return CastInfo(cast: cast ?? [], crew: crew ?? [])
     }
     
     private func getCast(from cast: CastDTO) -> Cast {

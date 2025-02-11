@@ -5,11 +5,19 @@
 //  Created by Mina Maged on 07/02/2025.
 //
 import Foundation
+import Moya
 
 class MovieDetailsDatasourceImpl: MovieDetailsDataSource {
+    
+    let apiProvider: MoyaProvider<MoviesAPI>
+    
+    required init(apiProvider: MoyaProvider<MoviesAPI>) {
+        self.apiProvider = apiProvider
+    }
+    
     func getMovieDetails(movieId: Int) async throws -> MovieDetailsDTO {
         return try await withCheckedThrowingContinuation { continuation in
-            moviesAPIProvider.request(.getMovieDetails(movieId: movieId)) { result in
+            apiProvider.request(.getMovieDetails(movieId: movieId)) { result in
                 switch result {
                 case .success(let response):
                     do {
@@ -27,7 +35,7 @@ class MovieDetailsDatasourceImpl: MovieDetailsDataSource {
     
     func getSimilarMovies(to movieId: Int) async throws -> [MovieDTO] {
         return try await withCheckedThrowingContinuation { continuation in
-            moviesAPIProvider.request(.getSimilarMovies(movieId: movieId)) { result in
+            apiProvider.request(.getSimilarMovies(movieId: movieId)) { result in
                 switch result {
                 case .success(let response):
                     do {
@@ -45,7 +53,7 @@ class MovieDetailsDatasourceImpl: MovieDetailsDataSource {
     
     func getCast(of movieId: Int) async throws -> CastResponseDTO {
         return try await withCheckedThrowingContinuation { continuation in
-            moviesAPIProvider.request(.getCast(movieId: movieId)) { result in
+            apiProvider.request(.getCast(movieId: movieId)) { result in
                 switch result {
                 case .success(let response):
                     do {
